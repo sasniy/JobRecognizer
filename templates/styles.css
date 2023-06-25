@@ -1,0 +1,206 @@
+body {
+      font-family: Arial, sans-serif;
+      background-image: url('static/background.jpg');
+      background-repeat: no-repeat;
+      background-size: cover;
+    }
+
+    .container {
+      text-align: center;
+      margin: 50px auto;
+      width: 70%;
+      background-color:#F0F0F0;
+      padding: 20px;
+      border-radius: 30px;
+      box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+    }
+
+    .form-container {
+      margin-bottom: 20px;
+    }
+
+    .input-text,
+    .output-text {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 10px;
+      margin-top: 20px;
+      box-sizing: border-box;
+      font-size: 16px;
+      resize: none;
+      background-color: #f7f7f7;
+      color: #333333;
+      border-radius: 5px;
+      border: 1px solid #dddddd;
+    }
+
+    .output-text {
+      height: 150px;
+      overflow-y: auto;
+      border-radius: 5px;
+    }
+
+    .download-btn {
+      display: flex;
+      align-items: center;
+      width: 50%;
+      padding: 10px;
+      background-color: #ff8000;
+      color: #000000;
+      text-decoration: none;
+      font-size: 24px;
+      justify-content: center;
+      border-radius: 5px;
+      margin: auto;
+      font-family: 'Consolas', 'Menlo', 'DejaVu Sans Mono', 'Bitstream Vera Sans Mono', monospace;
+    }
+
+    .download-icon {
+      height: 20px;
+      width: 20px;
+      margin-right: 10px;
+    }
+
+    h1 {
+      font-size: 64px;
+      margin-bottom: 20px;
+      color: #ff8000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .logo-image {
+      height: 140px;
+      margin-right: 20px;
+    }
+
+    .sub-heading {
+      font-size: 24px;
+      color: #333333;
+      margin-bottom: 20px;
+      font-family: 'Consolas', 'Menlo', 'DejaVu Sans Mono', 'Bitstream Vera Sans Mono', monospace;
+    }
+
+    .table-container {
+      margin-top: 20px;
+      max-height: 800px;
+      overflow: auto;
+    }
+
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+
+    th,
+    td {
+      padding: 8px;
+      border-bottom: 1px solid #dddddd;
+      text-align: left;
+    }
+
+    th {
+      background-color: #ff8000;
+      color: #ffffff;
+    }
+    .file-upload-label {
+      display: inline-block;
+      background-color: #ff8000;
+      color: #000000;
+      padding: 10px;
+      border-radius: 5px;
+      font-size: 20px;
+      cursor: pointer;
+      font-family: 'Consolas', 'Menlo', 'DejaVu Sans Mono', 'Bitstream Vera Sans Mono', monospace;
+    }
+
+    .upload-icon {
+      height: 20px;
+      width: 20px;
+      margin-right: 10px;
+      vertical-align: middle;
+    }
+    .output-text {
+  height: auto;
+  overflow-y: hidden;
+}
+
+.table-container {
+  margin-top: 20px;
+  margin-bottom: 40px;
+  max-height: 400px;
+  overflow: auto;
+}
+
+h2 {
+  font-size: 20px;
+  margin-bottom: 10px;
+}
+
+.form-container {
+  position: relative;
+}
+
+
+#example-button {
+  position: absolute;
+  top: -30px;
+  left: 0;
+  background-color: #4CAF50;
+  border: none;
+  color: white;
+  padding: 10px 20px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+#example-button:hover {
+  background-color: #45a049;
+}
+
+#example-button:active {
+  background-color: #3e8e41;
+}
+#example-button {
+  position: absolute;
+  top: 20px;
+  left: 0;
+}
+
+.data-table {
+  border-collapse: collapse;
+  width: 100%;
+  border: 1px solid #dddddd;
+}
+
+.data-table caption {
+  text-align: left;
+  font-weight: bold;
+  padding: 5px;
+  background-color: #f0f0f0;
+}
+
+.data-table th,
+.data-table td {
+  padding: 8px;
+  border-bottom: 1px solid #dddddd;
+  text-align: left;
+}
+
+.data-table th {
+  background-color: #ff8000;
+  color: #ffffff;
+}
+.table-caption {
+  text-align: center;
+  font-weight: bold;
+}
+.data-table {
+  width: 280px;
+}

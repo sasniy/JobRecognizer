@@ -1,0 +1,508 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>JobRecognizer</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-image: url('static/background.jpg');
+      background-repeat: no-repeat;
+      background-size: cover;
+    }
+
+    .container {
+      text-align: center;
+      margin: 50px auto;
+      width: 70%;
+      background-color:#F0F0F0;
+      padding: 20px;
+      border-radius: 30px;
+      box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+    }
+
+    .form-container {
+      margin-bottom: 20px;
+    }
+
+    .input-text,
+    .output-text {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 10px;
+      margin-top: 20px;
+      box-sizing: border-box;
+      font-size: 16px;
+      resize: none;
+      background-color: #f7f7f7;
+      color: #333333;
+      border-radius: 5px;
+      border: 1px solid #dddddd;
+    }
+
+    .output-text {
+      height: 150px;
+      overflow-y: auto;
+      border-radius: 5px;
+    }
+
+    .download-btn {
+      display: flex;
+      align-items: center;
+      width: 50%;
+      padding: 10px;
+      background-color: #ff8000;
+      color: #000000;
+      text-decoration: none;
+      font-size: 24px;
+      justify-content: center;
+      border-radius: 5px;
+      margin: auto;
+      font-family: 'Consolas', 'Menlo', 'DejaVu Sans Mono', 'Bitstream Vera Sans Mono', monospace;
+    }
+
+    .download-icon {
+      height: 20px;
+      width: 20px;
+      margin-right: 10px;
+    }
+
+    h1 {
+      font-size: 64px;
+      margin-bottom: 20px;
+      color: #ff8000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .logo-image {
+      height: 140px;
+      margin-right: 20px;
+    }
+
+    .sub-heading {
+      font-size: 24px;
+      color: #333333;
+      margin-bottom: 20px;
+      font-family: 'Consolas', 'Menlo', 'DejaVu Sans Mono', 'Bitstream Vera Sans Mono', monospace;
+    }
+
+    .table-container {
+      margin-top: 20px;
+      max-height: 800px;
+      overflow: auto;
+    }
+
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+
+    th,
+    td {
+      padding: 8px;
+      border-bottom: 1px solid #dddddd;
+      text-align: left;
+    }
+
+    th {
+      background-color: #ff8000;
+      color: #ffffff;
+    }
+    .file-upload-label {
+      display: inline-block;
+      background-color: #ff8000;
+      color: #000000;
+      padding: 10px;
+      border-radius: 5px;
+      font-size: 20px;
+      cursor: pointer;
+      font-family: 'Consolas', 'Menlo', 'DejaVu Sans Mono', 'Bitstream Vera Sans Mono', monospace;
+    }
+
+    .upload-icon {
+      height: 20px;
+      width: 20px;
+      margin-right: 10px;
+      vertical-align: middle;
+    }
+    .output-text {
+  height: auto;
+  overflow-y: hidden;
+}
+
+.table-container {
+  margin-top: 20px;
+  margin-bottom: 40px;
+  max-height: 400px;
+  overflow: auto;
+}
+
+h2 {
+  font-size: 20px;
+  margin-bottom: 10px;
+}
+
+.form-container {
+  position: relative;
+}
+
+
+#example-button {
+  position: absolute;
+  top: -30px;
+  left: 0;
+  background-color: #4CAF50;
+  border: none;
+  color: white;
+  padding: 10px 20px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+#example-button:hover {
+  background-color: #45a049;
+}
+
+#example-button:active {
+  background-color: #3e8e41;
+}
+#example-button {
+  position: absolute;
+  top: 20px;
+  left: 0;
+}
+
+.data-table {
+  border-collapse: collapse;
+  width: 100%;
+  border: 1px solid #dddddd;
+}
+
+.data-table caption {
+  text-align: left;
+  font-weight: bold;
+  padding: 5px;
+  background-color: #f0f0f0;
+}
+
+.data-table th,
+.data-table td {
+  padding: 8px;
+  border-bottom: 1px solid #dddddd;
+  text-align: left;
+}
+
+.data-table th {
+  background-color: #ff8000;
+  color: #ffffff;
+}
+.table-caption {
+  text-align: center;
+  font-weight: bold;
+}
+.data-table {
+  width: 280px;
+}
+  </style>
+  <link id="favicon" rel="icon" type="image/x-icon" href="static/favicon.ico">
+</head>
+<body>
+  <div class="container">
+    <h1>
+      <img src="static/logo.png" alt="Logo" class="logo-image">
+      JobRecognizer
+    </h1>
+    <p class="sub-heading">Веб-сервис для обработки вакансий</p>
+
+    <div class="form-container">
+      <form>
+        <label for="file-upload" class="file-upload-label">
+          <img src="static/upload.png" alt="Upload Icon" class="upload-icon">
+          Загрузить файл
+        </label>
+        <input type="file" id="file-upload" name="file" accept=".xlsx" style="display: none;">
+        <button id="example-button">Пример</button>
+        <input type="text" id="input-text" class="input-text" placeholder="Введите текст">
+      </form>
+    </div>
+
+<div class="text-container">
+  <div id="output-text" class="output-text">
+    <table>
+      <caption class="table-caption"></caption>
+      <tbody>
+        <tr>
+          <td>
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th>Требования</th>
+                </tr>
+              </thead>
+              <tbody id="reqs-table"></tbody>
+            </table>
+          </td>
+          <td>
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th>Условия</th>
+                </tr>
+              </thead>
+              <tbody id="terms-table"></tbody>
+            </table>
+          </td>
+          <td>
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th>Обязанности</th>
+                </tr>
+              </thead>
+              <tbody id="charges-table"></tbody>
+            </table>
+          </td>
+          <td>
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th>Примечания</th>
+                </tr>
+              </thead>
+              <tbody id="notes-table"></tbody>
+            </table>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+
+
+
+    <a href="#" class="download-btn">
+      <img src="static/download.png" alt="Download Icon" class="download-icon">
+      Скачать файл
+    </a>
+
+
+    <div class="table-container" id="table-container"></div>
+  </div>
+
+  <script src="https://unpkg.com/xlsx/dist/xlsx.full.min.js"></script>
+<script>
+function clearTables() {
+    const reqsTable = document.getElementById('reqs-table');
+    const termsTable = document.getElementById('terms-table');
+    const chargesTable = document.getElementById('charges-table');
+    const notesTable = document.getElementById('notes-table');
+
+    reqsTable.innerHTML = '';
+    termsTable.innerHTML = '';
+    chargesTable.innerHTML = '';
+    notesTable.innerHTML = '';
+}
+
+function updateTableHeights() {
+    const reqsTable = document.getElementById('reqs-table');
+    const termsTable = document.getElementById('terms-table');
+    const chargesTable = document.getElementById('charges-table');
+    const notesTable = document.getElementById('notes-table');
+
+    const maxTableHeight = Math.max(
+        reqsTable.offsetHeight,
+        termsTable.offsetHeight,
+        chargesTable.offsetHeight,
+        notesTable.offsetHeight
+    );
+
+    reqsTable.style.height = maxTableHeight + 'px';
+    termsTable.style.height = maxTableHeight + 'px';
+    chargesTable.style.height = maxTableHeight + 'px';
+    notesTable.style.height = maxTableHeight + 'px';
+}
+
+async function sendTextToServer(text) {
+    try {
+        const response = await fetch('/change_text', { // Изменили URL запроса на текущий хост
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                text: text
+            })
+        });
+
+        if (response.ok) {
+            const data = await response.json();
+            return data.newText;
+        } else {
+            throw new Error('Ошибка при отправке запроса на сервер');
+        }
+    } catch (error) {
+        console.error(error);
+    }
+}
+
+
+document.getElementById('input-text').addEventListener('input', async function(e) {
+    const inputValue = e.target.value;
+    const outputText = document.getElementById('output-text');
+    const newText = await sendTextToServer(inputValue);
+    const reqs = newText[0]
+    const terms = newText[1]
+    const charges = newText[2]
+    const notes = newText[3]
+    clearTables();
+    let reqsTable = document.getElementById('reqs-table');
+    for (var i = 0; i < reqs.length; i++) {
+        var row = reqsTable.insertRow();
+        var cell = row.insertCell();
+        cell.textContent = reqs[i];
+    }
+    var termsTable = document.getElementById('terms-table');
+    for (var i = 0; i < terms.length; i++) {
+        var row = termsTable.insertRow();
+        var cell = row.insertCell();
+        cell.textContent = terms[i];
+    }
+
+    // Заполняем таблицу "Обязанности"
+    var chargesTable = document.getElementById('charges-table');
+    for (var i = 0; i < charges.length; i++) {
+        var row = chargesTable.insertRow();
+        var cell = row.insertCell();
+        cell.textContent = charges[i];
+    }
+
+    // Заполняем таблицу "Примечания"
+    var notesTable = document.getElementById('notes-table');
+    for (var i = 0; i < notes.length; i++) {
+        var row = notesTable.insertRow();
+        var cell = row.insertCell();
+        cell.textContent = notes[i];
+    }
+    updateTableHeights();
+});
+document.getElementById("example-button").addEventListener("click", function() {
+  fetch('/sample')
+    .then(function(response) {
+      return response.json();
+    })
+    .then(function(data) {
+      var sample = data.sample;
+      var inputText = document.getElementById("input-text");
+      setTimeout(function() {
+      inputText.value = sample;
+      inputText.dispatchEvent(new Event('input'));
+    }, 0);
+    })
+    .catch(function(error) {
+      console.log('Error:', error);
+    });
+});
+
+document.getElementById('file-upload').addEventListener('change', function(e) {
+    var file = e.target.files[0];
+    var reader = new FileReader();
+    var formData = new FormData();
+    formData.append('file',file)
+    fetch('/upload', {
+      method: 'POST',
+      body: formData
+    })
+    .then(function(response) {
+      if (response.ok) {
+        console.log('Файл успешно загружен');
+      } else {
+        console.log('Ошибка загрузки файла');
+      }
+    })
+    .catch(function(error) {
+      console.log('Ошибка при отправке запроса:', error.message);
+    });
+
+    reader.onload = function(e) {
+        var data = new Uint8Array(e.target.result);
+        var workbook = XLSX.read(data, {
+            type: 'array'
+        });
+        var worksheet = workbook.Sheets[workbook.SheetNames[0]];
+        var jsonData = XLSX.utils.sheet_to_json(worksheet, {
+            header: 1
+        });
+
+        // Отображение таблицы
+        var tableContainer = document.getElementById('table-container');
+        tableContainer.innerHTML = '';
+
+        var table = document.createElement('table');
+
+        // Создание заголовка таблицы
+        var headerRow = document.createElement('tr');
+        for (var i = 0; i < jsonData[0].length; i++) {
+            var cell = document.createElement('th');
+            cell.textContent = jsonData[0][i];
+            headerRow.appendChild(cell);
+        }
+        table.appendChild(headerRow);
+
+        // Создание строк и ячеек таблицы (случайные 5 строк)
+        var randomRows = getRandomRows(jsonData, 5);
+        for (var i = 1; i < randomRows.length; i++) {
+            var row = document.createElement('tr');
+            for (var j = 0; j < randomRows[i].length; j++) {
+                var cell = document.createElement('td');
+                cell.textContent = randomRows[i][j];
+                row.appendChild(cell);
+            }
+            table.appendChild(row);
+        }
+
+        tableContainer.appendChild(table);
+    };
+
+    reader.readAsArrayBuffer(file);
+});
+
+// Функция для получения случайных строк из массива данных
+function getRandomRows(data, count) {
+    var rows = [];
+    var rowIndexes = getRandomIndexes(data.length - 1, count);
+
+    for (var i = 0; i < rowIndexes.length; i++) {
+        rows.push(data[rowIndexes[i] + 1]);
+    }
+
+    return rows;
+}
+
+// Функция для получения случайных индексов
+function getRandomIndexes(maxIndex, count) {
+    var indexes = [];
+    while (indexes.length < count) {
+        var randomIndex = Math.floor(Math.random() * (maxIndex + 1));
+        if (!indexes.includes(randomIndex)) {
+            indexes.push(randomIndex);
+        }
+    }
+    return indexes;
+}
+
+document.querySelector('.download-btn').addEventListener('click', function() {
+  window.location.href = '/download';
+});
+
+
+
+</script>
+</body>
+</html>
